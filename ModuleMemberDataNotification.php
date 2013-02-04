@@ -95,15 +95,19 @@ class ModuleMemberDataNotification extends Module
         $objNextPage = $this->Database->prepare("SELECT * FROM tl_page Where id = ?")->execute($this->jumpTo);
         $strUrl = $this->generateFrontendUrl($objNextPage->row());
 
-        $strLink = sprintf('<a href="%s" title="%s">%s</a>', $strUrl, specialchars($objNextPage->title), specialchars($objNextPage->title));
+        $strLinkOpen = sprintf('<a href="%s" title="%s">', $strUrl, specialchars($objNextPage->title));
+        $strLinkClose = '</a>';
+
         $strMissingFields = implode(', ', $arrMissingFields);
 
         $strMessage = $this->mdn_message;
         $strMessage = str_replace("%fields%",$strMissingFields, $strMessage);
-        $strMessage = str_replace("%link%",$strLink, $strMessage);
+        $strMessage = str_replace("%linkopen%",$strLinkOpen, $strMessage);
+        $strMessage = str_replace("%linkclose%",$strLinkOpen, $strMessage);
 
         $this->Template->message = $strMessage;
-        $this->Template->link = $strLink;
+        $this->Template->linkOpen = $strLinkOpen;
+        $this->Template->linkClose = $strLinkClose;
         $this->Template->missingFields = $arrMissingFields;
     }
 }

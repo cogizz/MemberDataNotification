@@ -59,7 +59,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['mdn_message'] = array
     'label'                   => &$GLOBALS['TL_LANG']['tl_module']['mdn_message'],
     'exclude'                 => true,
     'inputType'               => 'text',
-    'eval'                    => array('tl_class' => 'long')
+    'eval'                    => array('tl_class' => 'long', 'allowHtml' => true)
 );
 
 ?>
